@@ -1,6 +1,10 @@
 # js-code-start
 Find js code start point, skip any whitespace and comments.
 
+[![Build Status](https://travis-ci.org/futurist/js-code-start.svg?branch=master)](https://travis-ci.org/futurist/js-code-start)
+[![npm](https://img.shields.io/npm/v/js-code-start.svg "Version")](https://www.npmjs.com/package/js-code-start)
+
+
 When you want to place some code at beginning of JS file, you don't want to messup `"use strict"` block, so this module help find the first real code beginning, thus skip any whitespace, comments, and `"use strict"` block.
 
 ## Usage
