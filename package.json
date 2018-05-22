@@ -1,0 +1,30 @@
+{
+  "name": "js-code-start",
+  "version": "1.0.0",
+  "description": "Find js code start point, skip any whitespace and comments",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/futurist/js-code-start.git"
+  },
+  "keywords": [
+    "skip-whitespace",
+    "skip-comments",
+    "find-start"
+  ],
+  "author": "James Yang",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/futurist/js-code-start/issues"
+  },
+  "homepage": "https://github.com/futurist/js-code-start#readme",
+  "devDependencies": {
+    "ava": "^0.25.0"
+  }
+}
