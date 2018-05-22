@@ -57,3 +57,5 @@ function parse(str) {
   return ast
 }
 
+module.exports = parse
+
