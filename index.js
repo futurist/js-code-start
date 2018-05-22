@@ -2,6 +2,7 @@ var white = ' \f\n\r\t\v\u00A0\u2028\u2029'.split('')
 var NODE_WHITE_SPACE = 1
 var NODE_LINE_COMMENT = 2
 var NODE_BLOCK_COMMENT = 3
+var NODE_USE_STRICT = 4
 
 function parse(str) {
   var i=0, c, next
@@ -54,9 +55,23 @@ function parse(str) {
     node.end = i-1
     ast.push(node)
   }
+  
+  var start = i
+  var useStrict = false
+  var strict = str.substr(i, 13)
+  if(strict==="'use strict';" || strict==='"use strict";'){
+    start = i+13
+    ast.push({
+      type: NODE_USE_STRICT,
+      start: i,
+      end: start-1
+    })
+    useStrict = true
+  }
   return {
-    start: i,
-    ast
+    start: start,
+    strict: useStrict,
+    ast: ast
   }
 }
 
