@@ -54,7 +54,10 @@ function parse(str) {
     node.end = i-1
     ast.push(node)
   }
-  return ast
+  return {
+    start: i,
+    ast
+  }
 }
 
 module.exports = parse
