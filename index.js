@@ -58,9 +58,9 @@ function parse(str) {
   
   var start = i
   var useStrict = false
-  var strict = str.substr(i, 13)
-  if(strict==="'use strict';" || strict==='"use strict";'){
-    start = i+13
+  var strict = /^['"]use strict['"]\s*;?/i.exec(str.substr(i))
+  if(strict) {
+    start = i+strict[0].length
     ast.push({
       type: NODE_USE_STRICT,
       start: i,
