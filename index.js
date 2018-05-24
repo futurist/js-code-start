@@ -8,10 +8,16 @@ function parse(str) {
   var i=0, c, next
   var length = str.length
   var ast = [], node={}
+  var lines = 1
+  var cols = 0
+  var prev = 0
   main_loop:
   for(;i<length;){
     c = str[i]
     next = str[i+1]
+    cols+=(i-prev)
+    prev = i
+    if(c==='\n') lines++, cols=0, prev++
     switch (node.type){
       case NODE_WHITE_SPACE:{
         if(white.indexOf(c) < 0) {
@@ -60,7 +66,9 @@ function parse(str) {
   var useStrict = false
   var strict = /^['"]use strict['"]\s*;?/i.exec(str.substr(i))
   if(strict) {
-    start = i+strict[0].length
+    var strictLen = strict[0].length
+    start = i+strictLen
+    cols+=strictLen
     ast.push({
       type: NODE_USE_STRICT,
       start: i,
@@ -70,6 +78,8 @@ function parse(str) {
   }
   return {
     start: start,
+    line: lines,
+    col: cols,
     strict: useStrict,
     ast: ast
   }

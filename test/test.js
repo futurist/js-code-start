@@ -4,33 +4,45 @@ const parse = require('../')
 test('should not throw', t=>{
   t.deepEqual(parse(``), {
     start: 0,
+    line:1,
+    col:0,
     strict: false,
     ast:[]
   })
   t.deepEqual(parse(`var a=1;`), {
     start: 0,
+    line:1,
+    col:0,
     strict: false,
     ast: []
   })
   t.deepEqual(parse(`'use strict'; var a=1;`), {
     start: 13,
+    line:1,
+    col: 13,
     strict: true,
     ast: [{type:4, start:0, end: 12}]
   })
   t.deepEqual(parse(`  var a=1;`), {
     start: 2,
+    line:1,
+    col:2,
     strict: false,
     ast:[{
     type:1, start:0, end:1
   }]})
   t.deepEqual(parse(`//\nvar a=1;`), {
     start: 3,
+    line:2,
+    col:0,
     strict: false,
     ast:[{
     type:2, start:0, end:2
   }]})
   t.deepEqual(parse(`/**/var a=1;`), {
     start: 4,
+    line:1,
+    col:4,
     strict: false,
     ast:[{
     type:3, start:0, end:3
@@ -53,6 +65,8 @@ test('should work', t=>{
   const ast = parse(code)
   t.deepEqual(ast, {
     start: 53,
+    line:10,
+    col: 13,
     strict: true,
     ast: [
     { type: 1, start: 0, end: 5 },
@@ -82,6 +96,8 @@ test('all skip', t=>{
   const ast = parse(code)
   t.deepEqual(ast, {
     start: 41,
+    line:11,
+    col: 0,
     strict: false,
     ast: [
     { type: 1, start: 0, end: 5 },

@@ -29,6 +29,8 @@ The result is
 
 ```
 { start: 67,
+  line: 8,
+  col: 13,
   strict: true,
   ast: 
    [ { type: 1, start: 0, end: 0 },
@@ -39,5 +41,10 @@ The result is
      { type: 4, start: 54, end: 66 } ] }
 ```
 
-And the js code start point is `67`, in `strict mode`.
+And the js code start point is `67`(after first `;` char), in `strict mode`.
+
+# Note
+The line number start from 1,
+but the column number start from 0,
+this is follow the Emacs convention.
 
